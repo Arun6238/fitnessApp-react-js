@@ -1,10 +1,11 @@
 import { Routes , Route, useNavigate  } from "react-router-dom";
+import { useEffect } from "react";
+
 import Profile from "./components/profile/Profile"
 import History from "./components/history/History"
 import Workout from "./components/workout/Workout"
 import Exercises from "./components/exercises/Exercises"
 import Measures from "./components/measures/Measures"
-import { useEffect } from "react";
 
 
 const RouterComp = () => {

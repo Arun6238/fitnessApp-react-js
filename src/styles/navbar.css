@@ -4,12 +4,14 @@
     font-size: 14px;
     font-weight: 600;
     /* font-weight: 600; */
+    user-select: none;
 }
 .navbar a{
     text-align: center;
     display: inline-block;
 
     color: #b9b7b7;
+    width: 55px;
     text-decoration: none;
 
 }
@@ -20,14 +22,22 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    transition: ease-in 300ms all;
 }
 .navbar .active{
     color: #ffffff ;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 800px) {
     .navbar{
-        padding-inline: 20%;
+        padding-left: 10px;
         font-size: 16px;
+    }
+    .navbar ul{
+        justify-content: flex-start;
+    }
+    .navbar a{
+        width: 100px;
     }
   }

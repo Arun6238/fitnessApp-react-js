@@ -1,12 +1,15 @@
-
 import NavBar from "./Navbar"
 import RouterComp from "./RouterComp"
+
+import "./styles/app.css"
 
 export const Layout = () => {
     return (
         <>
             <NavBar />
-            <RouterComp />
+            <div id="routes">
+                <RouterComp />
+            </div>
         </>
     )
 }

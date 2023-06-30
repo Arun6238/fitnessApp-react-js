@@ -10,11 +10,31 @@ const NavBar = () => {
     return (
         <nav className="navbar">
             <ul>
-                <NavigationLink icon={faUser} name="Profile"  to="/profile" />
-                <NavigationLink icon={faHistory} name="History" to="/history" />
-                <NavigationLink icon={faAdd} name="Wokrout" to="/workout" />
-                <NavigationLink icon={faDumbbell} name="Exercises" to="/exercises" />
-                <NavigationLink icon={faRuler} name="measures" to="/measures" />
+                <NavigationLink 
+                    icon={faUser} 
+                    name="Profile"  
+                    to="/profile"
+                 />
+                <NavigationLink
+                    icon={faHistory} 
+                    name="History" 
+                    to="/history" 
+                />
+                <NavigationLink 
+                    icon={faAdd} 
+                    name="Wokrout" 
+                    to="/workout" 
+                />
+                <NavigationLink 
+                    icon={faDumbbell} 
+                    name="Exercises" 
+                    to="/exercises" 
+                />
+                <NavigationLink 
+                    icon={faRuler} 
+                    name="measures" 
+                    to="/measures" 
+                />
             </ul>
         </nav>
     )
