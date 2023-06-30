@@ -4,19 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser ,faHistory, faAdd, faDumbbell,faRuler } from '@fortawesome/free-solid-svg-icons'
 
 import './styles/navbar.css'
-import { useEffect, useState } from "react"
+
 const NavBar = () => {
-    const [count,setCount] = useState(0)
-    useEffect(()=> {
-        console.log("onMount")
-    },[])
-    
-    const handleClick = () => {
-        setCount(prevState => {
-            return prevState + 1
-        })
-        console.log(count)
-    }
+
     return (
         <nav className="navbar">
             <ul>
