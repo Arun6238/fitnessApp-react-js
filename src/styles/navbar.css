@@ -1,8 +1,9 @@
 .navbar{
-    background-color: #262626;
-    padding: 15px;
-    font-size: 16px;
+    background-color: #383838;
+    padding:10px  5px;
+    font-size: 14px;
     font-weight: 600;
+    /* font-weight: 600; */
 }
 .navbar a{
     text-align: center;
@@ -23,3 +24,10 @@
 .navbar .active{
     color: #ffffff ;
 }
+
+@media (min-width: 768px) {
+    .navbar{
+        padding-inline: 20%;
+        font-size: 16px;
+    }
+  }

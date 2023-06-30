@@ -4,9 +4,11 @@ html,body{
   margin: 0;
   font-family:  "Avenir Next", "Avenir", "Avenir Next W01", system-ui, sans-serif;
 }
+/* Remove this before deployement */
 /* div{
   border: 2px solid red;
 } */
+
 #root{
   margin: 0;
 }
