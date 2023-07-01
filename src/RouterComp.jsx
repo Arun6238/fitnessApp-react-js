@@ -6,6 +6,7 @@ import History from "./components/history/History"
 import Workout from "./components/workout/Workout"
 import Exercises from "./components/exercises/Exercises"
 import Measures from "./components/measures/Measures"
+import NoMatchRoute from "./NoMatchRoute";
 
 
 const RouterComp = () => {
@@ -18,6 +19,7 @@ const RouterComp = () => {
                 <Route path="/workout" element={<Workout />}/>
                 <Route path="/exercises" element={<Exercises />}/>
                 <Route path="/measures" element={<Measures />}/>
+                <Route path="*" element={<NoMatchRoute/>}/>
             </Routes>
         </>
     )
@@ -36,3 +38,4 @@ const IndexPage = () => {
         </>
     )
 }
+

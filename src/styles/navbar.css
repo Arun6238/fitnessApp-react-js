@@ -23,7 +23,7 @@
     padding: 0;
     list-style: none;
 
-    transition: ease-in 300ms all;
+    transition: ease-in-out 50ms all;
 }
 .navbar .active{
     color: #ffffff ;
@@ -38,6 +38,6 @@
         justify-content: flex-start;
     }
     .navbar a{
-        width: 100px;
+        width: 120px;
     }
   }

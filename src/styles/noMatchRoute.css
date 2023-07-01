@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px ;
+
+}
+
+.container img {
+    width: 100%;
+    max-width: 696px;
+}
+.container button{
+    width:280px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: #441a9a;
+    border: transparent;
+    border-radius: 4px;
+}
