@@ -1,0 +1,33 @@
+.measures-container h2{
+    /* background-color: bisque; */
+    position:sticky;
+    top: 0;
+    padding-block: 20px;
+    background-color: white;
+    font-weight: 600;
+
+    /* set margins value as the padding of #route div in app.css */
+    margin: -10px;
+    padding-left:10px;
+
+    transition: all ease-in 100ms;
+}
+
+.reached-top{
+    font-size: 18px;
+    padding-block:10px;
+    -webkit-box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.35);
+    -moz-box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.35);
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.35);
+}
+.measures-container h5{
+    color: rgb(178, 178, 178);
+    font-weight: 600;
+}
+.measure-list{
+    list-style: none;
+    padding: 0;
+}
+.measure-list li{
+    margin-bottom: 40px;
+}

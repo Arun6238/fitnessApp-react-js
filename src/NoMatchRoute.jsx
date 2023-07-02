@@ -1,10 +1,8 @@
-import { useEffect } from "react"
 import background from  "./assets/004.jpg"
 import "./styles/noMatchRoute.css"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 const NoMatchRoute = () => {
     const navigate = useNavigate()
-    const location = useLocation()
 
     const redirectToHome = () => {
         navigate('/profile')
@@ -14,7 +12,7 @@ const NoMatchRoute = () => {
     return (
         <>
           <div className="container">
-                <img src={background} alt="" />
+                <img src={background} alt="404" />
                 <button onClick={redirectToHome}>Take me back to home page</button>
           </div>
         </>
