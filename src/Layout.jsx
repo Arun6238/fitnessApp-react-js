@@ -1,14 +1,15 @@
 import NavBar from "./Navbar"
-import RouterComp from "./RouterComp"
-
+import { Outlet } from "react-router-dom"
 import "./styles/app.css"
+
 
 export const Layout = () => {
     return (
         <>
             <NavBar />
             <div id="routes">
-                <RouterComp />
+                <Outlet/>
+                <button onClick={logout}>Logout</button>
             </div>
         </>
     )
