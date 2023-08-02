@@ -1,60 +1,73 @@
-.login-form-container{
-    --warning:#fff319;
-    --warning-light:#9a94334a;
+.login-register-form-container,
+.register-form-container{
+    --warning:#ff5219;
+    --warning-light:#9a33334a;
     --form-background:#0d0d0de7;
     --white:#ffffff;
     --link-color:#ff9191;
     --full-height:100vh;
     
     padding: 10px 0;
-    min-height: var(--full-height);
+    min-height: var(--full-height,100vh);
     box-sizing: border-box;
     background-image:url('./../assets/8341506.jpg');
     background-size: cover;
     background-position: center;
 
 }
-.login-form{
-    background-color:var(--form-background) ;
+
+.login-register-form{
+    background-color:var(--form-background , #0d0d0de7) ;
     max-width: 400px;
     padding: 50px 30px 100px;
-    color: var(--white);
+    color: var(--white , white);
     font-size: 15px;
     margin-inline: auto;
     margin-top: 60px;
     border-radius:5px;
+    box-sizing: border-box;
+
 }
 .form-element{
     margin-top: 15px;
 }
-.login-warning{
-    color:var(--warning);
-    font-size: 14px;
+.form-heading{
+    margin-bottom: 35px;
 }
-.login-warning-bordered{
+.login-register-warning{
+    color:var(--warning , #fff319);
+    font-size: 14px;
+    transition: all 300 ease-in;
+    margin-top: 5px;
+    display: inline-block;
+    animation: appear 0.5s forwards;
+}
+.login-register-warning-bordered{
     text-align: center;
     padding: 10px;
     color: var(--warning);
-    background-color:var(--warning-light);
+    background-color:var(--warning-light ,#9a94334a);
     margin-top:10px ;
-    border: 2px solid var(--warning);
+    border: 2px solid var(--warning ,#fff319);
+    animation: slideIn 0.5s ease forwards;
 }
 
-.login-form a{
+.login-register-form a{
     text-decoration: none;
-    color:var(--link-color) ;
+    color:var(--link-color ,#ff9191) ;
 }
-.login-form a,
-.register
+.login-register-form a,
+.register,
+.login
 {
     font-size: 15px;
     font-weight: 600;
 }
-.login-form h2{
+.login-register-form h2{
     text-align: center;
     font-size: 26px;
 }
-.login-label{
+.login-register-label{
     font-weight: 600;
     position: relative;
     padding: 0;
@@ -62,52 +75,82 @@
     display: block;
     margin-top: 20px;
 }
-.login-label input{
+.login-register-label input{
     background-color:inherit;
+    filter: none;
     color:inherit;
 }
-.login-label input,
-.login-form button {
+.login-register-label input,
+.login-register-form button {
    width: 100%; 
    font-size: inherit;
    padding-block: 10px;
    padding-inline: 30px;
    box-sizing: border-box;
    border-radius:5px;
-   border:var(--white) solid 2px;
+   border:var(--white , white) solid 2px;
    
 }
-.login-label input:focus{
-    outline: var(--white) 1px solid;
+input:autofill {
+    background:inherit; /* or any other */
+    color: white;
+  }
+.login-register-label input:focus{
+    outline: var(--white ,white) 1px solid;
 }
-.login-label svg{
+.login-register-label svg{
     position: absolute;
     top: 50%;
     left: 10px;
     transform: translatey(-50%);
 }
-.login-form button{
-    background-color: var(--white);
+.login-register-form button{
+    background-color: var(--white,white);
     font-weight: 600;
 }
-.login-form button:hover{
+.login-register-form button:hover{
     --bg-color:#d9ffe6;
-    background-color: var(--bg-color);
-    border-color:var(--bg-color);
+    background-color: var(--bg-color,#d9ffe6);
+    border-color:var(--bg-color,#d9ffe6);
     cursor: pointer;
 }
 
 @media only screen and (max-width: 500px) {
-    .login-form-container{
+    .login-register-form-container{
         padding: 0;
     }
-    .login-form{
+    .login-register-form{
         margin-top: 0;
         min-height:500px;
-        height:var(--full-height);
+        height:var(--full-height,100vh);
 
         padding-top:120px;
         max-width: 500px;
-        box-sizing: border-box;
+        border-radius: 0;
     }
   }
+
+.input-warning{
+    border-color: var(--warning) !important;
+    outline-color:var(--warning) !important;
+}
+
+@keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+
+@keyframes appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}

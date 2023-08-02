@@ -4,6 +4,7 @@ import { useAuthStore } from "../stores/authStore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser ,faLock } from '@fortawesome/free-solid-svg-icons'
 import './login.css'
+import { Warning, WarningBordered } from "./children/Children";
 
 const Login = () => {
     const {login} = useAuthStore()
@@ -125,14 +126,14 @@ const LoginForm = ({ onLogin }) => {
         onLogin(username,password,setInvalidCredentials)
     }
     return (
-        <div className="login-form-container">  
-            <form className="login-form" onSubmit={handleSubmit}>
-                <div className="form-element">
-                    <h2>Sign in</h2>
+        <div className="login-register-form-container">  
+            <form className="login-register-form" onSubmit={handleSubmit}>
+                <div className="form-heading">
+                    <h2>Sign In to Continue</h2>
                 </div>
-                <LoginWarningBordered value = {warning.credentials}/>
+                <WarningBordered value = {warning.credentials}/>
                 <div className="form-element">
-                    <label className="login-label">
+                    <label className="login-register-label">
                         <FontAwesomeIcon icon={faUser} />
                         <input 
                             type="text" 
@@ -142,11 +143,11 @@ const LoginForm = ({ onLogin }) => {
                             onChange={(e)=>{setUsername(e.target.value)}} 
                         />
                     </label>
-                    <LoginWarning value={warning.username}/>                
+                    <Warning value={warning.username}/>                
                 </div>
 
                 <div className="form-element">
-                    <label className="login-label">
+                    <label className="login-register-label">
                         <FontAwesomeIcon icon={faLock}/>
                         <input 
                             type="password" 
@@ -156,7 +157,7 @@ const LoginForm = ({ onLogin }) => {
                             onChange={(e) => {setPassword(e.target.value)}} 
                         />
                     </label>
-                    <LoginWarning value={warning.password}/>
+                    <Warning value={warning.password}/>
                 </div>
                 <div className="form-element">
                     <a className="forget-pass" href="#">Forget password?</a>
@@ -175,13 +176,3 @@ const LoginForm = ({ onLogin }) => {
     );
 }
 
-const LoginWarning = ({value}) => {
-    return <>
-        {value?<span className="login-warning">{value}</span>:null}
-    </>
-}
-const LoginWarningBordered = ({value}) => {
-    return <>
-        {value?<div className="login-warning-bordered">{value}</div>:null}
-    </>
-}
