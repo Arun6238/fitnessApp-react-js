@@ -1,0 +1,91 @@
+.filter-section-1{
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    padding-block:10px;
+    padding-right: 20px;
+    gap: 30px;
+
+    --search-svg-left:15px;
+}
+.filter-section-1 span{
+    justify-content: end;
+}
+.filter-button{
+    cursor: pointer;
+}
+.filter-section-1 input{
+    padding-left: calc(25px + var(--search-svg-left,15px));
+    padding-block:10px;
+    width: 100%;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: transparent;
+    border: transparent;
+    border-radius: 5px;
+    background-color: rgb(238, 234, 230);
+}
+.filter-search{
+    position: relative;
+    flex: 1;
+}
+.filter-search svg{
+    color:#616161;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-40%);
+    left: var(--search-svg-left,15px);
+}
+.filter-items-container h5{
+    margin-bottom:0;
+}
+.filter-items-column{
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    list-style: none;
+    user-select: none;
+    -webkit-user-select: none
+
+}
+.filter-items-column label{
+    padding-block: 5px;
+    padding-inline:10px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight:600;
+}
+.filter-items-column li{
+    background-color: aquamarine;
+    border-radius: 5px;
+}
+.filter-items-column input{
+    opacity: 0;
+    width: 0;
+    margin: 0;
+}
+.selected{
+    background-color: rgb(0, 119, 79) !important;
+    color: white;
+}
+
+.filter-items-column button{
+    padding-block: 10px;
+    padding-inline:15px ;
+    color: white;
+    background-color: rgb(0, 138, 44);
+    border: transparent;
+    outline: transparent;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filter-items-column button:hover{
+    background-color: rgb(5, 168, 57);
+}
+
+.filter-create-exercise{
+    
+}

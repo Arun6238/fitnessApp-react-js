@@ -1,0 +1,24 @@
+.exercises-applied-filter{
+    background-color:rgb(2, 150, 255);
+    color: white;
+    padding:5px;
+    padding-right: 40px;
+    display: inline-block;
+    border-radius: 2px;
+    position: relative;
+    margin-right: 10px;
+}
+.exercises-applied-filter button{
+    outline: transparent;
+    border: transparent;
+    font-size: inherit;
+    background-color: rgb(0, 105, 126);
+    color: white;
+    width: 25px;
+    position:absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-left: 5px;
+    cursor: pointer;
+}

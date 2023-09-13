@@ -1,0 +1,79 @@
+.exercise-card{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: all ease-in 400ms  ;
+}
+.exercise-card:hover{
+    background-color: #c4e0ff;
+}
+.placeholder{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ececec;
+    border-radius: 5px;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: slategray;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 2;
+}
+.section-1{
+    position: relative;
+}
+.section-1,
+.section-1 img{
+    width: 60px;
+    height: 45px;
+    background-color: white;
+    border-radius: 5px;
+}
+.section-2{
+    width: 75%;
+    max-width: 500px;
+    
+}
+.section-2 span{
+    display: block;
+}
+.section-2 .exercise-name{
+    font-size: 17px;
+    font-weight: 600;
+}
+.section-2 .exercise-bodypart{
+    width: fit-content;
+    min-width: 150px;
+    color: #5a5a5a;
+}
+
+.skeleton {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-text {
+    width: 100%;
+    margin: 0;
+    min-height: 20px;
+    margin-bottom: 5px;
+    border-radius: 2px;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: #585858;
+    }
+    100% {
+        background-color: #e3e3e3;
+    }
+}

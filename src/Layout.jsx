@@ -29,7 +29,7 @@ export const Layout = () => {
             <NavBar />
             <div id="routes">
                 <Outlet/>
-                <button onClick={logoutFunction}>Logout</button>
+                {/* <button onClick={logoutFunction}>Logout</button> */}
             </div>
         </>
     )
