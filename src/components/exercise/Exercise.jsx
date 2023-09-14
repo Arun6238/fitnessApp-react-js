@@ -1,16 +1,41 @@
 import { useParams } from "react-router-dom"
 import "./exercise.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import {useAuthenticatedFetch} from "../../hooks/api"
 const Exercise = () => {
   const params = useParams()
   const [tab,setTab] = useState("about")
-
+  const [aboutData,setAboutData] = useState({
+	image:"",
+	isCustom:"",
+	instruction:[],
+  })
   const isCustom = params.isCustom === 'true'
   const exerciseId = params.exerciseId
   const name = params.name
+  const fetchApi = useAuthenticatedFetch()
+  useEffect( () => {
+		const fetchData = async()=>{
+			const url = `exercise/exercise-details?exercise_id=${exerciseId}&isCustom=${isCustom}`
+			try{
+				const {data,status} = await fetchApi(url)
+				const {exercise,instructions} = data
+				setAboutData({
+					image:exercise.image,
+					isCustom:isCustom,
+					instructions:instructions
+				})
+				console.log(status)
+			}
+			catch(error){
+				console.error(error)
+			}
+		}
+		fetchData()
+  },[])
 
   const tabs= {
-		"about":<About/>,
+		"about":<About {...aboutData}/>,
 		"history":<History/>,
 		"records":<Records/>
 	}
@@ -52,10 +77,29 @@ const TabNavBar =({tabs,handleSelect,tab}) => {
 	</>
 }
 
-const About = () => {
-  return <>
-    <h2>About</h2>
-  </>
+const About = ({image="",instructions=[],isCustom=flase}) => {
+	if(isCustom){
+		return <>
+			<p>This is a Custom exercise</p>
+
+		</>
+	}
+	else{
+		return( 
+			<div className="exercise-about-container">
+				<img src={image} alt="an exererce image"/>
+				<div className="exercise-instructions">
+					<h5>Instructions</h5>
+					{instructions.map((item)=>{
+						return<div key={item.step_number} className="exercise-instruction">
+								<div className="exercise-step-number"><span>{item.step_number}</span></div>
+								<div className="exercise-instruction-text">{item.text}</div>
+							</div>
+					})}
+				</div>
+			</div>
+		)
+	}
 }
 
 const History = () => {
