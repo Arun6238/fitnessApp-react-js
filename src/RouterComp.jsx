@@ -30,7 +30,10 @@ const RouterComp = () => {
                         <Route path="/workout" element={<Workout />}/>
                         <Route path="/exercises" element={<Exercises />}/>
                         <Route path="/measures" element={<Measures />}/>
-                        <Route path="/exercise/:exerciseId/name/:name/isCustom/:isCustom" element={<Exercise/>} />
+                        <Route 
+                            path="/exercise/:exerciseId/:name/:isCustom/" 
+                            element={<Exercise/>} 
+                        />
 
                     </Route>
                 </Route>

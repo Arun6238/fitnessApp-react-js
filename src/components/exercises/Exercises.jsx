@@ -126,7 +126,7 @@ const Exercises = () => {
                             key={exercise.id + exercise.name}  
                             exercise={exercise} 
                             onClick={()=>{
-                                navigate(`/exercise/${exercise.id}/name/${exercise.name}/isCustom/${exercise.is_custom}`)
+                                navigate(`/exercise/${exercise.id}/${exercise.name}/${exercise.is_custom}`)
                             }}/>
                 ))
                 ):( componentLoading||<p>no results</p>)
