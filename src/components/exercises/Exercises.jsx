@@ -52,7 +52,6 @@ const Exercises = () => {
                     setComponentLoading(false)
                 }
                 callback(data.data.exercise)
-                console.log(data.data.exercise)
                 hasNext.current = data.data.has_next
                 next.current = data.data.next
             }

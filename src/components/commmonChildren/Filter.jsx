@@ -68,7 +68,7 @@ const FilterItems =(args) => {
             <ul className="filter-items-column">
                 
                 {BODYPART_CHOICES.map((item)=>
-                    <li key={item} value={item} className={item === bodyPart&&"selected"}>
+                    <li key={item} value={item} className={item === bodyPart?"selected":undefined}>
                         <label >
                             <input 
                                 type="radio"
@@ -83,7 +83,7 @@ const FilterItems =(args) => {
             <h5>Category</h5>
             <ul className="filter-items-column">
                 {CATEGORY_CHOICES.map((item)=>
-                    <li key={item} value={item} className={item === category&&"selected"}>
+                    <li key={item} value={item} className={item === category?"selected":undefined}>
                         <label >
                             <input 
                                 type="radio"
