@@ -1,0 +1,64 @@
+.workout-container{
+    --gray-color:#747474;
+    color: var(--gray-color,#747474);
+}
+.workout-container h6{
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+.workout-container h1,h2,h3,h4,h5{
+    color: black;
+}
+.start-empty-workout button{
+    background-color: rgb(0, 183, 255);
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+.start-empty-workout button:hover{
+    filter: brightness(.9);
+}
+
+.start-empty-workout button:active{
+    filter: brightness(1.2);
+}
+.add-template-container,
+.exercise-template-card-section-1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add-template-container button,
+.exercise-template-card-section-1 button{
+    background-color: inherit;
+    font-size: 16px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-template-container button:hover,
+.exercise-template-card-section-1 button:hover{
+    background-color: #0000002e;
+}
+.add-template-container button:active,
+.exercise-template-card-section-1 button:active{
+    background-color: #0000006d;
+}
+.exercise-template-card{
+    border: 1px solid var(--gray-color,#747474);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.exercise-template-card h3{
+    margin:0 0 5px 0;
+}
+.exercise-template-card p{
+    margin-top: 0;
+    margin-bottom: 3px;
+
+}
