@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from "react"
 import debounce from "../../utils/debounce"
 import { Filter } from "../commmonChildren/Filter"
 import { useNavigate } from "react-router-dom"
+import { faClose } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Exercises = () => {
     const authenticatedFetch = useAuthenticatedFetch()
@@ -110,12 +112,16 @@ const Exercises = () => {
                 {filter.body_part &&
                     <span className="exercises-applied-filter">
                         {filter.body_part} 
-                        <button onClick={()=>{selectBodyPart("")}}>x</button>
+                        <button onClick={()=>{selectBodyPart("")}}>
+                            <FontAwesomeIcon icon={faClose}/>
+                        </button>
                     </span>}
                 {filter.category &&
                     <span className="exercises-applied-filter">
                         {filter.category} 
-                        <button onClick={()=>{selectCategory("")}}>x</button>
+                        <button onClick={()=>{selectCategory("")}}>
+                            <FontAwesomeIcon icon={faClose}/>
+                        </button>
                     </span>
                 }
             </div>

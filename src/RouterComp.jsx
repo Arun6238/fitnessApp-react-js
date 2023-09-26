@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import NonAuthenticatedRoute from "./utils/NonAuthenticatedRoute";
 import AuthenticatedRoutes from "./utils/AuthenticatedRoutes";
 import Exercise from "./components/exercise/Exercise";
+import OngoingWorkout from "./components/ongoingWorkout/OngoingWorkout";
 import { Layout } from "./Layout";
 
 
@@ -34,9 +35,9 @@ const RouterComp = () => {
                             path="/exercise/:exerciseId/:name/:isCustom/" 
                             element={<Exercise/>} 
                         />
-
                     </Route>
                 </Route>
+                <Route path="/ongoing-workout" element={<OngoingWorkout/>}/>
                 <Route path="/*" element={<NoMatchRoute/>}/>
             </Routes>
         </>

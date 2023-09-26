@@ -1,24 +1,23 @@
 .exercises-applied-filter{
     background-color:rgb(2, 150, 255);
     color: white;
-    padding:5px;
-    padding-right: 40px;
-    display: inline-block;
+    padding:7px 10px;
     border-radius: 2px;
-    position: relative;
     margin-right: 10px;
+    display: inline-block;
+
 }
 .exercises-applied-filter button{
-    outline: transparent;
-    border: transparent;
-    font-size: inherit;
-    background-color: rgb(0, 105, 126);
-    color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
     width: 25px;
-    position:absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin-left: 5px;
-    cursor: pointer;
+    height: 25px;
+    border-radius: 50%;
+
+    margin-left: 10px;
+}
+.exercises-applied-filter button:active{
+    filter: brightness(.8);
 }
