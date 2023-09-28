@@ -7,10 +7,17 @@ import { Filter } from "../commmonChildren/Filter"
 import { useNavigate } from "react-router-dom"
 import { faClose } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
 const Exercises = () => {
+    const navigate = useNavigate()
+    const onSelect  = ({id,name,is_custom})=>{
+        navigate(`/exercise/${id}/${name}/${is_custom}`)
+    }
+    return <ExerciseList selectExercise={onSelect} />
+}
+export const ExerciseList = ({selectExercise}) => {
     const authenticatedFetch = useAuthenticatedFetch()
     const [componentLoading,setComponentLoading] = useState(true)
+    // isLoading is used inside authencticatedFetch function
     const [isLoading,setIsLoading] = useState(false)
     const [exercises,setExercises] = useState([])
     const hasNext = useRef(true)
@@ -20,7 +27,6 @@ const Exercises = () => {
         body_part:"",
         category:""
     })
-    const navigate = useNavigate()
     // funtion to set filter category
     const selectCategory = (value) => {
         // if value changed update the state
@@ -37,12 +43,18 @@ const Exercises = () => {
             return {...state,body_part:value}
         })
     }
+    const selectName = debounce(e => {
+        setFilter(state => {
+            return {...state,name:e.target.value}
+        })
+    },500)
     const mergeExercises = (exercises) => {
         setExercises(state =>{
             return [...state,...exercises]
         })
     }
-    const fetchData = (callback) =>{
+    // setExercises is set as the default value for the callback fuction so when callback is not explicitly porvided it will re write the existing exercise list with the new fetch data
+    const fetchData = (callback = setExercises) =>{
         setIsLoading(true)
         if(hasNext.current){
         const url =`exercise/exercise-list/?next=${next.current}&name=${filter.name}&category=${filter.category}&body_part=${filter.body_part}`
@@ -71,20 +83,17 @@ const Exercises = () => {
             setIsLoading(false)
         })}
     }
-    const debouncedFilterName = debounce(e => {
-        setFilter(state => {
-            return {...state,name:e.target.value}
-        })
-    },500)
+
     const handleScroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop + 2 <= document.documentElement.offsetHeight || isLoading) {
           return;
         }
+        // mergeExercise is passed as callback to merge the new fetch data with previous state
         fetchData(mergeExercises);
     };
 
     useEffect( ()=>{
-        fetchData(setExercises)
+        fetchData()
     },[])
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -95,35 +104,26 @@ const Exercises = () => {
             // set has next and next to true and empty string every time the filter is updated
             hasNext.current = true
             next.current = ""
-            fetchData(setExercises)
+            // fetch the exercise list with  new filters applied
+            fetchData()
     },[filter])
     return (
         <div className="exercises-container">
-            <Filter changeName={debouncedFilterName}
+            <h2>Exercises</h2>
+            <Filter changeName={selectName}
                     body_part={filter.body_part}
                     category={filter.category}
                     selectBodyPart={selectBodyPart}
                     selectCategory={selectCategory}
             />
-            <h2>Exercises</h2>
             <hr />
             <div>
                 {/* shows the selected filters if any */}
-                {filter.body_part &&
-                    <span className="exercises-applied-filter">
-                        {filter.body_part} 
-                        <button onClick={()=>{selectBodyPart("")}}>
-                            <FontAwesomeIcon icon={faClose}/>
-                        </button>
-                    </span>}
-                {filter.category &&
-                    <span className="exercises-applied-filter">
-                        {filter.category} 
-                        <button onClick={()=>{selectCategory("")}}>
-                            <FontAwesomeIcon icon={faClose}/>
-                        </button>
-                    </span>
-                }
+                <SelectedFilters 
+                    {...filter} 
+                    selectBodyPart={selectBodyPart}
+                    selectCategory={selectCategory}
+                />
             </div>
             
             {exercises.length > 0 ? (
@@ -131,9 +131,7 @@ const Exercises = () => {
                         <ExerciseCard 
                             key={exercise.id + exercise.name}  
                             exercise={exercise} 
-                            onClick={()=>{
-                                navigate(`/exercise/${exercise.id}/${exercise.name}/${exercise.is_custom}`)
-                            }}/>
+                            onClick={()=>{selectExercise(exercise)}}/>
                 ))
                 ):( componentLoading||<p>no results</p>)
             }
@@ -145,6 +143,23 @@ const Exercises = () => {
         </div>
     );
 }
-
+const SelectedFilters = ({name,body_part,category,selectBodyPart,selectCategory}) => {
+    return <>
+        {body_part &&
+            <span className="exercises-applied-filter">
+                {body_part} 
+                <button onClick={()=>{selectBodyPart("")}}>
+                    <FontAwesomeIcon icon={faClose}/>
+                </button>
+            </span>}
+        {category &&
+            <span className="exercises-applied-filter">
+                {category} 
+                <button onClick={()=>{selectCategory("")}}>
+                    <FontAwesomeIcon icon={faClose}/>
+                </button>
+            </span>}
+    </>
+}
 export default Exercises
 
