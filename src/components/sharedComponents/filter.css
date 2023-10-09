@@ -6,7 +6,7 @@
     padding-right: 20px;
     gap: 30px;
 
-    --search-svg-left:15px;
+
 }
 .filter-section-1 span{
     justify-content: end;
@@ -14,7 +14,8 @@
 .filter-button{
     cursor: pointer;
 }
-.filter-section-1 input{
+.exercise-filter-search-bar input{
+    --search-svg-left:15px;
     padding-left: calc(25px + var(--search-svg-left,15px));
     padding-block:10px;
     width: 100%;
@@ -25,11 +26,11 @@
     border-radius: 5px;
     background-color: rgb(238, 234, 230);
 }
-.filter-search{
+.exercise-filter-search-bar{
     position: relative;
     flex: 1;
 }
-.filter-search svg{
+.exercise-filter-search-bar svg{
     color:#616161;
     position: absolute;
     top: 50%;
@@ -86,6 +87,3 @@
     background-color: rgb(5, 168, 57);
 }
 
-.filter-create-exercise{
-    
-}

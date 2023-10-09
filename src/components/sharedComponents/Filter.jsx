@@ -2,7 +2,7 @@ import "./filter.css"
 import { useState } from "react"
 import { faSearch , faFilter} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-export const Filter = ({changeName,selectBodyPart,selectCategory,body_part,category}) => {
+export const Filter = ({selectName,selectBodyPart,selectCategory,body_part,category}) => {
     const [showFilter,setShowFilter] = useState(false)
     const toggleShowFilter = () => {
         setShowFilter(!showFilter)
@@ -10,11 +10,7 @@ export const Filter = ({changeName,selectBodyPart,selectCategory,body_part,categ
     return(
         <>
             <section className="filter-section-1">
-                <span className="filter-search" >
-                    <FontAwesomeIcon  icon={faSearch}/>
-                    <input type="text"  onChange={changeName} />     
-                </span>
-            
+                <FilterSearch selectName={selectName}/>            
                 <span className="filter-button " onClick={toggleShowFilter}>
                     <FontAwesomeIcon icon={faFilter}/> 
                 </span> 
@@ -30,7 +26,14 @@ export const Filter = ({changeName,selectBodyPart,selectCategory,body_part,categ
         </>
     )
 }
-
+export const FilterSearch = ({selectName}) => {
+    return (
+        <div className="exercise-filter-search-bar" >
+            <FontAwesomeIcon  icon={faSearch}/>
+            <input type="text"  onChange={selectName} />     
+        </div>
+    )
+}
 const FilterItems =(args) => {
     const BODYPART_CHOICES = ["Core","Arms","Back","Chest","Legs","Shoulders","Other","Olympic","Full body","Cardio"]
     const CATEGORY_CHOICES = ["Barbell","Dumbbell","Machine/Other","Weighted bodyweight","Assisted body","Reps only",,"Cardio exercice","Duration"

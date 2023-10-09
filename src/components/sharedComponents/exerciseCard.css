@@ -1,10 +1,12 @@
 .exercise-card{
     display: flex;
     gap: 20px;
+    align-items: center;
     padding: 10px;
     box-sizing: border-box;
     margin-bottom: 10px;
-    transition: all ease-in 400ms  ;
+    border: #5858581a 2px dotted;
+    transition: all ease-in 200ms  ;
 }
 .exercise-card:hover{
     background-color: #c4e0ff;
@@ -41,7 +43,7 @@
 .section-2{
     width: 75%;
     max-width: 500px;
-    
+    flex: 1;
 }
 .section-2 span{
     display: block;
@@ -55,7 +57,15 @@
     min-width: 150px;
     color: #5a5a5a;
 }
-
+.section-3{
+    margin-left: auto;
+}
+.section-3 button{
+    background-color:inherit;
+    font-size: 18px;
+    border-radius: 2px;
+    color: green;
+}
 .skeleton {
     opacity: .7;
     animation: skeleton-loading 1s linear infinite alternate;

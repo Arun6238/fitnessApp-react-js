@@ -12,7 +12,9 @@ import NonAuthenticatedRoute from "./utils/NonAuthenticatedRoute";
 import AuthenticatedRoutes from "./utils/AuthenticatedRoutes";
 import Exercise from "./components/exercise/Exercise";
 import OngoingWorkout from "./components/ongoingWorkout/OngoingWorkout";
+import NewTemplate from "./components/newTemplate/NewTemplate";
 import { Layout } from "./Layout";
+import AddExercise from "./components/newTemplate/addExercise/AddExercise";
 
 
 const RouterComp = () => {
@@ -36,8 +38,11 @@ const RouterComp = () => {
                             element={<Exercise/>} 
                         />
                     </Route>
+                    <Route path="/ongoing-workout" element={<OngoingWorkout/>}/>
+                    <Route path="/add-new-template" element={<NewTemplate/>}>
+                        <Route path="add-exercise" element={<AddExercise />}/>
+                    </Route>
                 </Route>
-                <Route path="/ongoing-workout" element={<OngoingWorkout/>}/>
                 <Route path="/*" element={<NoMatchRoute/>}/>
             </Routes>
         </>

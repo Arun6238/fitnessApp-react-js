@@ -32,7 +32,9 @@ const Workout = () => {
         }
         navigate("/ongoing-workout")
     }
-
+    const addNewTemplate = () => {
+        navigate('/add-new-template')
+    }
     useEffect(() => {
         try{
             // get all the templates
@@ -65,7 +67,7 @@ const Workout = () => {
             <div className='my-templates'>
                 <div className='add-template-container'>
                     <h6>MY TEMPLATES</h6>
-                    <button className='add-template-button'>
+                    <button className='add-template-button' onClick={addNewTemplate}>
                         <FontAwesomeIcon icon={faAdd} />
                     </button>
                 </div>

@@ -1,0 +1,47 @@
+.new-template-container{
+    --button-color:#009dff;
+}
+.new-template-container header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.new-template-container header,
+.new-template-content{
+    padding-inline: 15px;
+}
+.new-template-content .add-exercise,
+.new-template-container .save-button{
+    height: fit-content;
+    padding: 6px 12px;
+    background-color:inherit;
+    color:var(--button-color,#009dff);
+    font-weight: bold;
+    font-size: 14px;
+}
+.new-template-content .add-exercise:active,
+.new-template-container .save-button:active{
+    color: rgb(0, 102, 255);
+    cursor:progress;
+}
+.new-template-content{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.new-template-content .add-exercise,
+.new-template-content .template-name{
+    padding: 15px 8px;
+}
+.new-template-content .template-name{
+    border: transparent;
+    outline: transparent;
+    font-size:15px;
+    background-color: #e8e8e8;
+}
+.new-template-content .add-exercise{
+    background-color: inherit;
+    color:var(--button-color,#009dff);
+}
