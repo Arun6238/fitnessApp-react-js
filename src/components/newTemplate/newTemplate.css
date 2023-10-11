@@ -1,6 +1,7 @@
 .new-template-container{
     --button-color:#009dff;
 }
+body{--input-background:#e8e8e8}
 .new-template-container header{
     display: flex;
     justify-content: space-between;
@@ -44,4 +45,67 @@
 .new-template-content .add-exercise{
     background-color: inherit;
     color:var(--button-color,#009dff);
+}
+
+/* template-exercise-card-table */
+.template-exercise-card-table-container{
+    --padding:10px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    padding-right: var(--padding);
+    border: 5px dotted rgba(255, 0, 0, 0.132);
+
+}
+.template-exercise-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+.template-exercise-card-header button{
+    background-color: inherit;
+}
+.template-exercise-card-table-container h3,
+.template-exercise-card-table-container h4,
+.template-exercise-card-table-container h6{
+    color: #009dff;
+    padding-left:var(--padding,10px);
+}
+.template-exercise-card-table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: var(--padding,10px);
+}
+.template-exercise-card-table th{
+    font-weight: 600;
+    font-size: 14px;
+}
+.template-exercise-card-table td{
+    padding: var(--padding,10px);
+    box-sizing: border-box;
+}
+.template-exercise-card-table td,.template-exercise-card-table input{
+    vertical-align: center;
+    text-align: center;
+}
+.template-exercise-card-table input{
+    width: 100%;
+    background-color: var(--input-background,#e8e8e8);
+}
+.template-exercise-card-table input,
+.template-exercise-card-table-container button{
+    padding-block:8px;
+    border: transparent;
+    outline: transparent;
+    padding-inline:var(--padding,10px);
+    font-size:14px;
+}
+.template-exercise-card-table button{
+    background-color: red;
+    color: white;
+}
+.template-exercise-card-add-set{
+    background-color: inherit;
+    color: var(--button-color,#009dff);
+    font-weight: 600;
+    display: block;
+    margin-inline: auto;
 }

@@ -4,7 +4,6 @@ import { useEffect} from "react"
 import { ExerciseCardSelect } from "../../sharedComponents/ExerciseCard"
 import useInfiniteScrollExercises from "../../../hooks/infiniteScrollExercises"
 import {FilterSearch} from "../../sharedComponents/Filter"
-import {Toaster} from "react-hot-toast"
 import { useToast } from "../../../hooks/useToast"
 
 
@@ -26,10 +25,6 @@ const AddExercise = () => {
                 onSelect={onSelect}
                 isSelected={isExerciseSelected}
                 errorToast ={errorToast}
-            />
-            <Toaster
-                position="bottom-center"
-                toastOptions={{duration:2000}}
             />
         </div>
         

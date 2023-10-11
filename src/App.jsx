@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import RouterComp from "./RouterComp"
 import { useAuthStore } from "./stores/authStore"
 import {isExpired} from 'react-jwt'
+import {Toaster} from "react-hot-toast"
 
 const App = () =>{
     const {login,accessToken,logout}  = useAuthStore()
@@ -43,6 +44,10 @@ const App = () =>{
     return (
         <>
             {loading?null:<RouterComp/>}
+            <Toaster
+                position="bottom-center"
+                toastOptions={{duration:2000}}
+            />
         </>
     )
 }
