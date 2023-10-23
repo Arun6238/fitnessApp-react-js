@@ -1,0 +1,63 @@
+.rename-template-card{
+    --pb:8px;
+    --pi:15px;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter:blur(2px);
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.rename-template-card-form{
+    background-color: white;
+    margin-top: 150px;
+    margin-inline:auto;
+    border-radius: 2px;
+    padding-inline: 20px;
+    padding-block:15px 25px;
+    box-sizing: border-box;
+    max-width:350px;
+}
+.rename-template-card-title{
+    margin: 0 0 18px 0;
+}
+.rename-template-card-form label{
+    color: black;
+    font-weight: 600;
+}
+.rename-template-card-form input{
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--global-inp-bg);
+    border: transparent;
+    outline: transparent;
+    padding: var(--pb) var(--pi);
+    margin-block:15px;
+}
+.rename-template-form-buttons{
+    text-align: right;
+}
+
+.rename-template-form-buttons button{
+    font-weight: 600;
+    padding: var(--pb) var(--pi);
+    border-radius: 2px;
+    background-color: inherit;
+}
+.rename-template-cancel{
+    --color:red;
+    color:var(--color);
+    border: var(--color) 2px solid;
+    margin-right: 10px;  
+}
+.rename-template-ok{
+    --color:green;
+    color:var(--color);
+    border: var(--color) 2px solid;
+}
+.rename-template-form-buttons button:hover{
+    background-color: var(--color);
+    color: white;
+}

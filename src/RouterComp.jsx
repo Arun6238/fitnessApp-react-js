@@ -15,6 +15,7 @@ import OngoingWorkout from "./components/ongoingWorkout/OngoingWorkout";
 import NewTemplate from "./components/newTemplate/NewTemplate";
 import { Layout } from "./Layout";
 import AddExercise from "./components/newTemplate/addExercise/AddExercise";
+import RenameTemplate from "./components/workout/renameTemplate/RenameTemplate";
 
 
 const RouterComp = () => {
@@ -30,7 +31,7 @@ const RouterComp = () => {
                     <Route element={<Layout/>}>
                         <Route path="/Profile" element={<Profile />}/>
                         <Route path="/history" element={<History />}/>
-                        <Route path="/workout" element={<Workout />}/>
+                        <Route path="/workout" element={<Workout />} />
                         <Route path="/exercises" element={<Exercises />}/>
                         <Route path="/measures" element={<Measures />}/>
                         <Route 

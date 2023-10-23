@@ -1,15 +1,23 @@
 import './workout.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAdd,faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+import { faAdd,faEllipsisV} from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import { useAuthenticatedFetch } from "../../hooks/api"
-import { useEffect, useState } from 'react'
-
+import {useEffect, useRef, useState } from 'react'
+import useClickOutside from '../../hooks/clickOutside'
+import {useToast} from '../../hooks/useToast'
+import RenameTemplate from './renameTemplate/RenameTemplate'
+import useToggle from '../../hooks/toggle'
+import useTemplates from './template'
+import {useRenameTemplateStore} from "./renameTemplate/renameStore"
 const Workout = () => {
-    const [templates,setTemplates] = useState([])
-    const [IsRendered,setIsRendered] = useState(false)
+    const count = useRef(0)
+    const setRenameTemplateData = useRenameTemplateStore(state => state.setRenameTemplateData);
+    const {templates,renameTemplate,removeTemplate,addTemplates} = useTemplates()
+    const [isRenameTemplateVisible,toggleRenameTemplate] = useToggle()
     const navigate = useNavigate()
     const fetch = useAuthenticatedFetch()
+    const {successToast} = useToast()
     const startEmptyWorkout = async () => {
         const url = "exercise/start-new-training-session/";
         const postData = {
@@ -32,16 +40,42 @@ const Workout = () => {
         }
         navigate("/ongoing-workout")
     }
+  
+    const OpenRenameTemplate = ({index, id, name}) => {
+        setRenameTemplateData(index, id, name)
+        toggleRenameTemplate()
+    };
+    const handleDelete = async (id,index) => {
+        const url = `exercise/delete-template/${id}`
+        const options = {
+            method:"DELETE",
+            headers:{
+                'Content-Type':'application/json',
+            },
+        }
+        try{
+            const {status} = await fetch(url,options)
+            if(status === 200){
+                removeTemplate(index)
+                successToast("Template deleted successfully")
+            }
+        }
+        catch(error){
+            console.error("an error occured",error)
+        }
+
+    }
     const addNewTemplate = () => {
         navigate('/add-new-template')
     }
+
     useEffect(() => {
         try{
             // get all the templates
             const fetchData = async () => {
                 const {data , status} = await fetch("exercise/get_all_templates/")
                 if (status === 200){
-                    setTemplates(data.data)
+                    addTemplates(data.data)
                 }
                 else{
                     // replace this with proper error handling
@@ -53,12 +87,19 @@ const Workout = () => {
         catch(e){
             console.log(e)
         }
-        finally{
-            setIsRendered(true)
-        }
+        // finally{
+        //     setIsRendered(true)
+        // }
     },[])
+    console.log("count ---------------------- :",++count.current)
     return (
         <div className='workout-container'>
+            {isRenameTemplateVisible && 
+                <RenameTemplate 
+                    renameLocally = {renameTemplate}
+                    close={toggleRenameTemplate}
+                    fetch={fetch} 
+                />}
             <h2>Workout</h2>
             <div className='start-empty-workout'>
                 <h6>QUICK START</h6>
@@ -71,14 +112,13 @@ const Workout = () => {
                         <FontAwesomeIcon icon={faAdd} />
                     </button>
                 </div>
-                {IsRendered?
-                    templates.map(item => <TemplateCard 
-                                                key={item.id} 
-                                                name={item.name}  
-                                                exercises={item.exercises}
-                                            />)
-                    :"loading..."
-                }
+            {templates.map((item,index )=> <TemplateCard 
+                                            key={item.id} 
+                                            template={item} 
+                                            index={index}
+                                            renameTemplate={OpenRenameTemplate}
+                                            deleteTemplate={handleDelete} 
+            />)}
             </div>
         </div>
     )
@@ -86,14 +126,53 @@ const Workout = () => {
 
 export default Workout
 
-const TemplateCard = ({name="",exercises=[]}) => {
+const TemplateCard = ({template,index,deleteTemplate,renameTemplate}) => {
+    const [showDropdown,setShowDropdown] = useState(false)
+    const {id,name,exercises} = template
+
+    const handleClick = (e) => {
+        setShowDropdown(true)
+    }
+    const hideDropDown = () => {
+        setShowDropdown(false)
+    }
+    const handleDelete = () => deleteTemplate(id,index)
+    const handleRename = () => {
+        renameTemplate({name,index,id})
+        hideDropDown()
+    }
+
     return(
-        <div className='exercise-template-card'>
+        <div className='exercise-template-card' style={{position:"relative"}}>
             <div className='exercise-template-card-section-1'>
                 <h3>{name}</h3>
-                <button ><FontAwesomeIcon icon={faEllipsisV}/></button>
+                <button onClick={handleClick}><FontAwesomeIcon icon={faEllipsisV}/></button>
+                {showDropdown && 
+                    <DropDown 
+                        handleDelete={handleDelete}
+                        handleRename={handleRename}
+                        hide={hideDropDown}
+                    />
+                }
             </div>
             {exercises.map(item => <p key={item.id}>{item.sets} x {item.name} </p>)}
         </div>
     )
 }
+
+const DropDown = ({handleRename,handleDelete,hide}) =>{
+    const domnode = useClickOutside(()=>{
+        hide()
+    })
+
+    return(
+        <div ref={domnode} className='template-dropdown'>
+            <ul className='template-dropdown-options'>
+                <li>Edit</li>
+                <li onClick={handleRename}>Rename</li>
+                <li onClick={handleDelete}>Delete</li>
+            </ul>
+        </div>
+    )
+}
+

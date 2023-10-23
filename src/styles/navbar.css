@@ -1,15 +1,19 @@
 .navbar{
     background-color: #383838;
     padding:10px  5px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     /* font-weight: 600; */
     user-select: none;
 }
+.navbar svg{
+    font-size: 20px;
+}
 .navbar a{
     text-align: center;
-    display: inline-block;
-
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     color: #b9b7b7;
     width: 55px;
     text-decoration: none;

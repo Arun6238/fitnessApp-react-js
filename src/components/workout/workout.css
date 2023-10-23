@@ -62,3 +62,30 @@
     margin-bottom: 3px;
 
 }
+
+/* template dropdown styles */
+
+.template-dropdown{
+    position:absolute;
+    background-color: black;
+    right: 30px;
+    top: 20px;
+    color: white;
+    border-radius: 2px;
+    box-shadow: #000000a1 0px 0px  8px 2px;
+    z-index: 3;
+}
+.template-dropdown  ul{
+    list-style: none;
+    padding: 10px 15px;
+    margin: 0;
+}
+.template-dropdown li{
+    padding-block:5px;
+    margin-block: 10px;
+    padding-right: 50px;
+    cursor: pointer;
+}
+
+/* rename template */
+

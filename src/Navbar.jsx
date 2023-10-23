@@ -47,7 +47,6 @@ const NavigationLink = ({to,name,icon}) => {
         <li>
             <NavLink to={to}>
                 <FontAwesomeIcon icon={icon} />
-                <br />
                 {name}
             </NavLink>
         </li>
