@@ -3,16 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdd,faEllipsisV} from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import { useAuthenticatedFetch } from "../../hooks/api"
-import {useEffect, useRef, useState } from 'react'
+import {useEffect, useState } from 'react'
 import useClickOutside from '../../hooks/clickOutside'
 import {useToast} from '../../hooks/useToast'
 import RenameTemplate from './renameTemplate/RenameTemplate'
 import useToggle from '../../hooks/toggle'
-import useTemplates from './template'
+import useTemplates from './templateState'
 import {useRenameTemplateStore} from "./renameTemplate/renameStore"
+import { useEditTemplateStore } from './store/editTemplate'
 const Workout = () => {
-    const count = useRef(0)
     const setRenameTemplateData = useRenameTemplateStore(state => state.setRenameTemplateData);
+    const setTemplateToEdit = useEditTemplateStore(state => state.setTemplate)
     const {templates,renameTemplate,removeTemplate,addTemplates} = useTemplates()
     const [isRenameTemplateVisible,toggleRenameTemplate] = useToggle()
     const navigate = useNavigate()
@@ -42,6 +43,7 @@ const Workout = () => {
     }
   
     const OpenRenameTemplate = ({index, id, name}) => {
+        // set values index ,id and name of template to be renamed
         setRenameTemplateData(index, id, name)
         toggleRenameTemplate()
     };
@@ -68,7 +70,10 @@ const Workout = () => {
     const addNewTemplate = () => {
         navigate('/add-new-template')
     }
-
+    const editTemplate = (template) => {
+        setTemplateToEdit(template)
+        navigate('/add-new-template')
+    }
     useEffect(() => {
         try{
             // get all the templates
@@ -91,7 +96,6 @@ const Workout = () => {
         //     setIsRendered(true)
         // }
     },[])
-    console.log("count ---------------------- :",++count.current)
     return (
         <div className='workout-container'>
             {isRenameTemplateVisible && 
@@ -118,6 +122,7 @@ const Workout = () => {
                                             index={index}
                                             renameTemplate={OpenRenameTemplate}
                                             deleteTemplate={handleDelete} 
+                                            editTemplate={editTemplate}
             />)}
             </div>
         </div>
@@ -126,7 +131,7 @@ const Workout = () => {
 
 export default Workout
 
-const TemplateCard = ({template,index,deleteTemplate,renameTemplate}) => {
+const TemplateCard = ({template,index,deleteTemplate,renameTemplate,editTemplate}) => {
     const [showDropdown,setShowDropdown] = useState(false)
     const {id,name,exercises} = template
 
@@ -141,6 +146,9 @@ const TemplateCard = ({template,index,deleteTemplate,renameTemplate}) => {
         renameTemplate({name,index,id})
         hideDropDown()
     }
+    const handleEdit = () => {
+        editTemplate(template)
+    }
 
     return(
         <div className='exercise-template-card' style={{position:"relative"}}>
@@ -151,6 +159,7 @@ const TemplateCard = ({template,index,deleteTemplate,renameTemplate}) => {
                     <DropDown 
                         handleDelete={handleDelete}
                         handleRename={handleRename}
+                        handleEdit={handleEdit}
                         hide={hideDropDown}
                     />
                 }
@@ -160,17 +169,25 @@ const TemplateCard = ({template,index,deleteTemplate,renameTemplate}) => {
     )
 }
 
-const DropDown = ({handleRename,handleDelete,hide}) =>{
+import {useConfirmationDialog} from "./../../stores/confirmationDialogStore"
+const DropDown = ({handleEdit,handleRename,handleDelete,hide}) =>{
+    const setConfirm = useConfirmationDialog(state => state.setConfirm)
     const domnode = useClickOutside(()=>{
         hide()
     })
-
+    const deleteTemplate = () => {
+        hide()
+        setConfirm({
+            title:"Delete Template",
+            message:"Are you sure you want to delete this template?",
+            action:handleDelete})
+    }
     return(
         <div ref={domnode} className='template-dropdown'>
             <ul className='template-dropdown-options'>
-                <li>Edit</li>
+                <li onClick={handleEdit} >Edit</li>
                 <li onClick={handleRename}>Rename</li>
-                <li onClick={handleDelete}>Delete</li>
+                <li onClick={deleteTemplate}>Delete</li>
             </ul>
         </div>
     )

@@ -3,6 +3,7 @@ import RouterComp from "./RouterComp"
 import { useAuthStore } from "./stores/authStore"
 import {isExpired} from 'react-jwt'
 import {Toaster} from "react-hot-toast"
+import ConfirmationDialog from "./ConfirmationDialog"
 
 const App = () =>{
     const {login,accessToken,logout}  = useAuthStore()
@@ -48,6 +49,7 @@ const App = () =>{
                 position="bottom-center"
                 toastOptions={{duration:2000}}
             />
+            <ConfirmationDialog />
         </>
     )
 }

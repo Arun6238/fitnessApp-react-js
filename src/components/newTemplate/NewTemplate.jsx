@@ -1,11 +1,12 @@
 import "./newTemplate.css"
 import { useNavigate } from "react-router-dom"
-import {useState} from 'react'
+import {useEffect,useState} from 'react'
 import { Outlet } from "react-router-dom"
 import { useToast } from "../../hooks/useToast"
 import {useAuthenticatedFetch} from "../../hooks/api"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faClose} from "@fortawesome/free-solid-svg-icons"
+import {useEditTemplateStore} from "../workout/store/editTemplate"
 const NewTemplate = () => {
 	const [template,setTemplate] = useState({
         name:"",
@@ -15,6 +16,7 @@ const NewTemplate = () => {
     const [hide,setHide] = useState(false)
     const navigate=useNavigate()
     const fetch =useAuthenticatedFetch()
+    const {id,edit,templateToEdit,clearTemplate} = useEditTemplateStore()
     const {errorToast} =useToast()
     const toggleParent = () => {
         setHide((state)=>!state)
@@ -48,6 +50,7 @@ const NewTemplate = () => {
     
     const pushExercise = (exercise) => {
         const key = String(exercise.is_custom) + exercise.id
+        console.log("check this out",exercise)
         setTemplate(state => {
             return {
                 ...state,
@@ -64,9 +67,9 @@ const NewTemplate = () => {
             errorToast("Please select atleast one exercise")
         }
         else{
-            const url ="exercise/create_new_template/"
+            const url =edit?`exercise/update-template/${id}`:"exercise/create_new_template/"
             const options =  {
-                method: 'POST',
+                method: edit?'PUT':'POST',
                 headers: {
                   'Content-Type': 'application/json',
                 },
@@ -76,7 +79,9 @@ const NewTemplate = () => {
             if(status === 200){
                 navigate('/workout',{replace:true})
             }
-            console.log({name:template.name,exercices:template.exercises})
+            else{
+                alert("some thing went wrong")
+            }
         }
     }
     const  addExercises = () => {
@@ -85,9 +90,29 @@ const NewTemplate = () => {
     const  setTemplateName = (e) => {
         setTemplate((state) =>({...state,name:e.target.value}))
     }
-
+    useEffect(()=>{
+        if(edit){
+            let newValue = {
+                name:templateToEdit.name,
+                exercises:[],
+                uniqueExercises:{}
+            }
+            templateToEdit.exercises.forEach(exercise => {
+                const key = String(exercise.is_custom) + exercise.id
+                newValue.exercises.push({
+                    exercise,
+                    sets:exercise.sets
+                })
+                newValue.uniqueExercises[key] = ""
+            })
+            // console.log("new :",newValue)
+            setTemplate(newValue)
+        }
+        return () => {clearTemplate()}
+    },[])
   return <>
     {hide?null:<NewTemplateUi 
+        edit={edit}
         setTemplateName={setTemplateName} 
         addExercises={addExercises} 
         template={template}
@@ -100,10 +125,10 @@ const NewTemplate = () => {
   </>
 }
 
-const NewTemplateUi = ({template,setTemplateName,addExercises,addSet,removeSet,saveTemplate,removeExercise}) => {
+const NewTemplateUi = ({edit,template,setTemplateName,addExercises,addSet,removeSet,saveTemplate,removeExercise}) => {
     return <div className="new-template-container">
     <header>
-        <h4>new workout template</h4>
+        <h4>{edit?"Edit workout template":"new workout template"}</h4>
         <button onClick={saveTemplate} className="save-button">Save</button>
     </header>
     <hr />

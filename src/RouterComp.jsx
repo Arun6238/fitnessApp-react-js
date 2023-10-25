@@ -1,4 +1,4 @@
-import { Routes , Route, useNavigate, Navigate  } from "react-router-dom";
+import { Routes , Route, Navigate  } from "react-router-dom";
 
 import Profile from "./components/profile/Profile"
 import History from "./components/history/History"
@@ -15,8 +15,6 @@ import OngoingWorkout from "./components/ongoingWorkout/OngoingWorkout";
 import NewTemplate from "./components/newTemplate/NewTemplate";
 import { Layout } from "./Layout";
 import AddExercise from "./components/newTemplate/addExercise/AddExercise";
-import RenameTemplate from "./components/workout/renameTemplate/RenameTemplate";
-
 
 const RouterComp = () => {
     return (

@@ -1,0 +1,48 @@
+.confirm-dialog-card{
+    --pb:8px;
+    --pi:15px;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter:blur(2px);
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.confirm-dialog-card-content{
+    background-color: white;
+    margin-top: 150px;
+    margin-inline:auto;
+    border-radius: 2px;
+    padding-inline: 20px;
+    padding-block:15px 25px;
+    box-sizing: border-box;
+    max-width:350px;
+}
+.confirm-dialog-card-title{
+    margin-top: 5px;
+}
+
+.confirm-dialog-card-buttons{
+    text-align: right;
+}
+
+.confirm-dialog-card-buttons button{
+    font-weight: 600;
+    padding: var(--pb) var(--pi);
+    border-radius: 2px;
+}
+.confirm-dialog-card-cancel{
+    --color:rgb(147, 147, 147);
+    background-color:var(--color);
+    border: var(--color) 2px solid;
+    margin-right: 10px;  
+}
+.confirm-dialog-card-ok{
+    --color:rgb(0, 128, 128);
+    background-color:var(--color);
+    color: white;
+    border: var(--color) 2px solid;
+}
+
